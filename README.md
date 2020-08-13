@@ -19,6 +19,7 @@ there is also some [user documentation](http://jmoiron.github.io/sqlx/) that
 explains how to use `database/sql` along with sqlx.
 
 ## Recent Changes
+* support logger (the default logger is logrus, and you can custom the logger by `sqlx.SetLogger(myLogger)`)
 
 * The [introduction](https://github.com/jmoiron/sqlx/pull/387) of `sql.ColumnType` sets the required minimum Go version to 1.8.
 
