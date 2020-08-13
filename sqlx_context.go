@@ -197,7 +197,7 @@ func (db *DB) MustExecContext(ctx context.Context, query string, args ...interfa
 
 func (db *DB) ExecContext(ctx context.Context, query string, args ...interface{}) (sql.Result, error) {
 	logs.Print(ctx, query, args)
-	return db.DB.ExecContext(ctx, query, args)
+	return db.DB.ExecContext(ctx, query, args...)
 }
 
 // BeginTxx begins a transaction and returns an *sqlx.Tx instead of an

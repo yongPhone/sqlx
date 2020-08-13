@@ -375,7 +375,7 @@ func (db *DB) MustExec(query string, args ...interface{}) sql.Result {
 
 func (db *DB) Exec(query string, args ...interface{}) (sql.Result, error) {
 	logs.Print(nil, query, args)
-	return db.DB.Exec(query, args)
+	return db.DB.Exec(query, args...)
 }
 
 // Preparex returns an sqlx.Stmt instead of a sql.Stmt
