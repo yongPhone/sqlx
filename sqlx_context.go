@@ -110,6 +110,7 @@ func LoadFileContext(ctx context.Context, e ExecerContext, path string) (*sql.Re
 // MustExecContext execs the query using e and panics if there was an error.
 // Any placeholder parameters are replaced with supplied args.
 func MustExecContext(ctx context.Context, e ExecerContext, query string, args ...interface{}) sql.Result {
+	logs.Print(ctx, query, args)
 	res, err := e.ExecContext(ctx, query, args...)
 	if err != nil {
 		panic(err)
@@ -322,6 +323,11 @@ func (tx *Tx) PreparexContext(ctx context.Context, query string) (*Stmt, error) 
 // PrepareNamedContext returns an sqlx.NamedStmt
 func (tx *Tx) PrepareNamedContext(ctx context.Context, query string) (*NamedStmt, error) {
 	return prepareNamedContext(ctx, tx, query)
+}
+
+func (tx *Tx) ExecxContext(ctx context.Context, query string, args ...interface{}) (sql.Result, error) {
+	logs.Print(ctx, query, args)
+	return tx.ExecContext(ctx, query, args...)
 }
 
 // MustExecContext runs MustExecContext within a transaction.
